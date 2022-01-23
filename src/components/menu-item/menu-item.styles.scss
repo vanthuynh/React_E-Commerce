@@ -7,9 +7,9 @@
     justify-content: center;
     border: 1px solid black;
     margin: 0 7.5px 15px;
-    overflow: hidden;
-    background-position: center;
-    background-size: cover;
+    overflow: hidden; // we don't want images overflow
+    // background-position: center;
+    // background-size: cover;
   
     &:hover {
       cursor: pointer;
