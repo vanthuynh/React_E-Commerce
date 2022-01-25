@@ -7,6 +7,7 @@ const CollectionItem = ({ id, name, price, imageUrl }) => (
         <div 
             className="image"
             style={{
+                // backgroundImage: `url(${require(imageUrl)})`
                 backgroundImage: `url(${imageUrl})`
             }}
         />
