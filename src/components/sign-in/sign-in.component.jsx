@@ -1,11 +1,11 @@
 import React from 'react';
 
 import FormInput from '../form-input/form-input.component';
+import CustomButton from '../custom-button/custom-button.component';
 
 import './sign-in.styles.scss';
 
  // since we have to store what the user typing in, use class
-
 class SignIn extends React.Component{
     constructor(props) {
         super(props);
@@ -55,7 +55,7 @@ class SignIn extends React.Component{
                         label="password"
                         required 
                     />
-                    <input type="submit" value="Submit Form"/>
+                    <CustomButton type="submit">Sign In</CustomButton>
                 </form>
             </div>
         )
