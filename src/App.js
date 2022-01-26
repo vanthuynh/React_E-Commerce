@@ -7,7 +7,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 /* we want to store user sign-in info on the App state 
  * to that we can pass it into components that need it */
@@ -17,7 +17,7 @@ class App extends React.Component {
 
     this.state = {
       currentUser: null
-    }
+    };
   }
 
   unsubscribeFromAuth = null
@@ -25,11 +25,9 @@ class App extends React.Component {
   componentDidMount() {
     // method from 'auth' library that take function as parameter, this case is what the user state is
     // here even after we refresh the app, firebase still aware that the user is still signed in
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
-
-      console.log(user);
-    })
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+      createUserProfileDocument(user);
+    });
   }
 
   componentWillUnmount() {
