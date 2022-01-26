@@ -19,5 +19,16 @@
       color: black;
       border: 1px solid black;
     }
+
+    // we want google-sign-in and custom-buttom on the same element
+    &.google-sign-in {
+        background-color: #4285f4;
+        color: white;
+
+        &:hover {
+            background-color: #357ae8;
+            border: none;
+        }
+    }
   }
   
