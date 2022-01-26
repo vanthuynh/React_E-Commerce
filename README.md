@@ -14,6 +14,9 @@ rm -rf yarn.lock
 npm update -D 
 ```
 
+## Case of cloning or forking this repo
+> 'config' object in firebase.utils.js file needs to be replaced with your own config object in the firebase authentication tab ==> this is how firebase knows that your application is connected to your firebase account and database
+
 ## Develop Structure
 ``` Project
 ├── Homepage
