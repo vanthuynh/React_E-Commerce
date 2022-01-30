@@ -25,8 +25,25 @@ class App extends React.Component {
   componentDidMount() {
     // method from 'auth' library that take function as parameter, this case is what the user state is
     // here even after we refresh the app, firebase still aware that the user is still signed in
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      createUserProfileDocument(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth) { // if userAuth is not null
+        const userRef = await createUserProfileDocument(userAuth);
+
+        // now use userRef to check if the database has updated at that reference with any new data
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,...snapShot.data()
+            }
+          }, () => {
+            console.log(this.state); // console.log here as 2nd parameter since setState is Asynchronous
+          })
+        });
+      }
+      //if user is null 
+      else {
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
