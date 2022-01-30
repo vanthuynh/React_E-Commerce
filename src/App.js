@@ -40,7 +40,6 @@ class App extends React.Component {
           })
         });
       }
-      //if user is null 
       else {
         this.setState({ currentUser: userAuth });
       }
