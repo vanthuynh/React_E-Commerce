@@ -13,7 +13,6 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
             </label>) 
             : null
         }
-        {/* selectively render a label (in case reuse FormInput component without passing label value)*/}
     </div>
 );
 

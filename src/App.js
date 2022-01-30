@@ -33,11 +33,12 @@ class App extends React.Component {
         userRef.onSnapshot(snapShot => {
           this.setState({
             currentUser: {
-              id: snapShot.id,...snapShot.data()
+              id: snapShot.id,
+              ...snapShot.data()
             }
-          }, () => {
-            console.log(this.state); // console.log here as 2nd parameter since setState is Asynchronous
-          })
+          });
+
+          console.log(this.state);
         });
       }
       else {
