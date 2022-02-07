@@ -3,34 +3,35 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
 const config = {
-    apiKey: "AIzaSyDHxn0DyQm5_9vWYxl__xWaSBmeqm1p_nA",
-    authDomain: "crwn-db-2be34.firebaseapp.com",
-    projectId: "crwn-db-2be34",
-    storageBucket: "crwn-db-2be34.appspot.com",
-    messagingSenderId: "783244591407",
-    appId: "1:783244591407:web:b079249d9c1385bfb921da",
-    measurementId: "G-XSS01V7HGN"
+    apiKey: 'AIzaSyDHxn0DyQm5_9vWYxl__xWaSBmeqm1p_nA',
+    authDomain: 'crwn-db-2be34.firebaseapp.com',
+    projectId: 'crwn-db-2be34',
+    storageBucket: 'crwn-db-2be34.appspot.com',
+    messagingSenderId: '783244591407',
+    appId: '1:783244591407:web:b079249d9c1385bfb921da',
+    measurementId: 'G-XSS01V7HGN',
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-    if(!userAuth)   return;
-
-    const userRef = firestore.doc('users/128fdashadu');
+    if (!userAuth) return;
+    //  * ==============================
+    //* change this to uid to make a new user to DB also check the rules tab in Db for  request.time. Make sure you have given access to read and write
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
 
     const snapShot = await userRef.get();
 
-    if(!snapShot.exists) {
+    if (!snapShot.exists) {
         const { displayName, email } = userAuth; // we only need to retrieve the name and email
         const createAt = new Date(); // tell the time/date that object was created
         // if snapShot of such user doesn't exist, try adding it on database
         try {
-            await userRef.set({
-                displayName,
-                email,
-                createAt,
-                ...additionalData
-            })
-        } catch(error) {
+        await userRef.set({
+            displayName,
+            email,
+            createAt,
+            ...additionalData,
+        });
+        } catch (error) {
             console.log('error creating user', error.message);
         }
     }
